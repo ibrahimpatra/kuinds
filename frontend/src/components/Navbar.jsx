@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Menu, X, Phone } from 'lucide-react';
 import { Button } from './ui/button';
 
@@ -8,6 +8,7 @@ export const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [logoClicks, setLogoClicks] = useState(0);
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,48 +29,69 @@ export const Navbar = () => {
   // Navigate to admin login on triple click
   useEffect(() => {
     if (logoClicks === 3) {
-      navigate('/admin/login');
+      navigate('/login');
       setLogoClicks(0);
     }
   }, [logoClicks, navigate]);
 
   const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Services', href: '#services' },
-    { name: 'Testimonials', href: '#testimonials' },
-    { name: 'FAQ', href: '#faq' },
-    { name: 'Contact', href: '#contact' },
-    { name: 'Blog', href: '/blog', external: true }
+    { name: 'Home', href: '/' },
+    { name: 'About', href: '/#about' },
+    { name: 'Services', href: '/#services' },
+    { name: 'Testimonials', href: '/#testimonials' },
+    { name: 'FAQ', href: '/#faq' },
+    { name: 'Contact', href: '/#contact' },
+    { name: 'Blog', href: '/blog' }
   ];
 
-  const scrollToSection = (e, href) => {
+  const handleNavigation = (e, href) => {
     e.preventDefault();
-    
-    // If it's an external link (blog), navigate using React Router
-    if (href.startsWith('/')) {
+    setIsMobileMenuOpen(false);
+
+    // If href contains hash (anchor)
+    if (href.includes('#')) {
+      const [path, hash] = href.split('#');
+      
+      // If we're not on home page, navigate to home first
+      if (location.pathname !== '/' && path === '/') {
+        navigate('/');
+        // Wait for navigation then scroll
+        setTimeout(() => {
+          const element = document.getElementById(hash);
+          if (element) {
+            const offset = 80;
+            const elementPosition = element.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - offset;
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+            });
+          }
+        }, 100);
+      } else {
+        // Already on home, just scroll
+        const element = document.getElementById(hash);
+        if (element) {
+          const offset = 80;
+          const elementPosition = element.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - offset;
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }
+      }
+    } else {
+      // Regular navigation
       navigate(href);
-      setIsMobileMenuOpen(false);
-      return;
-    }
-    
-    const element = document.querySelector(href);
-    if (element) {
-      const offset = 80;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-      setIsMobileMenuOpen(false);
     }
   };
 
   const handleLogoClick = (e) => {
     e.preventDefault();
     setLogoClicks(prev => prev + 1);
-    scrollToSection(e, '#home');
+    navigate('/');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
@@ -81,27 +103,27 @@ export const Navbar = () => {
           {/* Logo */}
           <div className="flex-shrink-0">
             <a 
-              href="#home" 
-              className="flex items-center space-x-2" 
+              href="/" 
+              className="flex items-center space-x-3" 
               onClick={handleLogoClick}
               title="Triple-click for admin access"
             >
-              <div className="flex items-center space-x-1">
-                <div className="w-3 h-3 rounded-full bg-red-600"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
-                <div className="w-3 h-3 rounded-full bg-green-600"></div>
-              </div>
-              <span className="text-xl font-bold text-gray-900">Kuwait India Driving School</span>
+              <img 
+                src="https://customer-assets.emergentagent.com/job_learn-drive-kuwait/artifacts/w08228zj_image.png" 
+                alt="Traffic Light Logo" 
+                className="h-12 w-auto"
+              />
+              <span className="text-lg font-bold text-gray-900 hidden sm:block">Kuwait India Driving School</span>
             </a>
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-6">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                onClick={(e) => scrollToSection(e, link.href)}
+                onClick={(e) => handleNavigation(e, link.href)}
                 className="text-gray-700 hover:text-green-600 font-medium transition-colors duration-200"
               >
                 {link.name}
@@ -133,7 +155,7 @@ export const Navbar = () => {
               <a
                 key={link.name}
                 href={link.href}
-                onClick={(e) => scrollToSection(e, link.href)}
+                onClick={(e) => handleNavigation(e, link.href)}
                 className="block px-3 py-2 text-gray-700 hover:text-green-600 hover:bg-green-50 rounded-lg font-medium transition-colors duration-200"
               >
                 {link.name}

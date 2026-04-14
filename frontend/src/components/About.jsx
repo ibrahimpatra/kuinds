@@ -1,7 +1,33 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { CheckCircle, MapPin, Clock, Award, Car, Users } from 'lucide-react';
 
 export const About = () => {
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const elements = entry.target.querySelectorAll('.animate-on-scroll');
+            elements.forEach((el, index) => {
+              setTimeout(() => {
+                el.classList.add('animate-fade-in-up');
+              }, index * 100);
+            });
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   const features = [
     { icon: Award, text: "15-30+ years experienced instructors", color: "text-green-600" },
     { icon: Car, text: "Manual & automatic training", color: "text-red-600" },
@@ -12,23 +38,23 @@ export const About = () => {
   ];
 
   return (
-    <section id="about" className="py-16 bg-white relative overflow-hidden">
+    <section id="about" className="py-16 bg-white relative overflow-hidden" ref={sectionRef}>
       {/* Traffic Sign Decorations */}
-      <div className="absolute top-10 left-5 w-12 h-12 opacity-10">
+      <div className="absolute top-10 left-5 w-12 h-12 opacity-10 animate-pulse">
         <img src="https://customer-assets.emergentagent.com/job_learn-drive-kuwait/artifacts/nnqz70pt_Gemini_Generated_Image_qaslysqaslysqasl.png" alt="" className="w-full h-full object-contain" />
       </div>
-      <div className="absolute top-20 right-5 w-12 h-12 opacity-10">
+      <div className="absolute top-20 right-5 w-12 h-12 opacity-10 animate-pulse">
         <img src="https://customer-assets.emergentagent.com/job_learn-drive-kuwait/artifacts/nnqz70pt_Gemini_Generated_Image_qaslysqaslysqasl.png" alt="" className="w-full h-full object-contain" />
       </div>
-      <div className="absolute bottom-10 left-10 w-16 h-16 opacity-10">
+      <div className="absolute bottom-10 left-10 w-16 h-16 opacity-10 animate-pulse">
         <img src="https://customer-assets.emergentagent.com/job_learn-drive-kuwait/artifacts/nnqz70pt_Gemini_Generated_Image_qaslysqaslysqasl.png" alt="" className="w-full h-full object-contain" />
       </div>
-      <div className="absolute bottom-20 right-10 w-16 h-16 opacity-10">
+      <div className="absolute bottom-20 right-10 w-16 h-16 opacity-10 animate-pulse">
         <img src="https://customer-assets.emergentagent.com/job_learn-drive-kuwait/artifacts/nnqz70pt_Gemini_Generated_Image_qaslysqaslysqasl.png" alt="" className="w-full h-full object-contain" />
       </div>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-12">
+        <div className="text-center max-w-3xl mx-auto mb-12 animate-on-scroll opacity-0">
           <div className="inline-block bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-semibold mb-4 border-2 border-green-600">
             About Us
           </div>
@@ -45,7 +71,7 @@ export const About = () => {
           {features.map((feature, index) => (
             <div
               key={index}
-              className="bg-gradient-to-br from-white to-gray-50 border-2 border-green-600 rounded-2xl p-6 hover:shadow-2xl hover:border-red-500 transition-all duration-300 text-center group"
+              className="animate-on-scroll opacity-0 bg-gradient-to-br from-white to-gray-50 border-2 border-green-600 rounded-2xl p-6 hover:shadow-2xl hover:border-red-500 transition-all duration-300 text-center group"
             >
               <feature.icon className={`w-12 h-12 ${feature.color} mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`} />
               <p className="text-gray-900 font-bold">{feature.text}</p>

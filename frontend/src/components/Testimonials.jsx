@@ -26,7 +26,7 @@ export const Testimonials = () => {
           </p>
         </div>
 
-        {/* Google Rating Card */}
+        {/* Google Rating Card
         <div className="max-w-2xl mx-auto mb-12 bg-gradient-to-r from-green-50 to-green-100 border-2 border-green-600 rounded-2xl p-8 text-center shadow-xl">
           <div className="flex items-center justify-center space-x-2 mb-4">
             <img 
@@ -45,7 +45,7 @@ export const Testimonials = () => {
             <span className="text-3xl font-bold text-gray-900">5.0</span>
           </div>
           <p className="text-gray-600 mb-6">Based on 100+ verified reviews</p>
-        </div>
+        </div> */}
 
         {/* Elfsight Google Reviews Widget */}
         <div className="max-w-6xl mx-auto">
