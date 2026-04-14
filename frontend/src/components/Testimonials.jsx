@@ -1,9 +1,58 @@
 import React from 'react';
-import { Star, MapPin, ExternalLink } from 'lucide-react';
-import { testimonials } from '../mockData';
+import { Star, MapPin, ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
+import { googleReviews } from '../data/googleReviews';
 import { Avatar, AvatarFallback } from './ui/avatar';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
+// Custom arrow components
+const NextArrow = ({ onClick }) => (
+  <button
+    onClick={onClick}
+    className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-green-600 hover:bg-green-700 text-white p-3 rounded-full shadow-lg transition-all duration-200 hover:scale-110"
+  >
+    <ChevronRight className="w-6 h-6" />
+  </button>
+);
+
+const PrevArrow = ({ onClick }) => (
+  <button
+    onClick={onClick}
+    className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-green-600 hover:bg-green-700 text-white p-3 rounded-full shadow-lg transition-all duration-200 hover:scale-110"
+  >
+    <ChevronLeft className="w-6 h-6" />
+  </button>
+);
 
 export const Testimonials = () => {
+  const sliderSettings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    pauseOnHover: true,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+        }
+      },
+      {
+        breakpoint: 640,
+        settings: {
+          slidesToShow: 1,
+        }
+      }
+    ]
+  };
+
   return (
     <section id="testimonials" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -16,7 +65,7 @@ export const Testimonials = () => {
             What Our <span className="text-green-600">Students Say</span>
           </h2>
           <p className="text-lg text-gray-600">
-            Don't just take our word for it - hear from our satisfied students who passed their driving tests!
+            Real reviews from our satisfied students who passed their driving tests!
           </p>
         </div>
 
@@ -45,39 +94,40 @@ export const Testimonials = () => {
             rel="noopener noreferrer"
             className="inline-flex items-center space-x-2 bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors duration-200 font-semibold"
           >
-            <span>View All Reviews on Google</span>
+            <span>View All Reviews on Google Maps</span>
             <ExternalLink className="w-4 h-4" />
           </a>
         </div>
 
-        {/* Testimonials Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {testimonials.map((testimonial) => (
-            <div
-              key={testimonial.id}
-              className="bg-white border border-gray-200 rounded-2xl p-6 hover:shadow-xl transition-shadow duration-300"
-            >
-              <div className="flex items-center space-x-4 mb-4">
-                <Avatar className="w-12 h-12 bg-green-100 text-green-700">
-                  <AvatarFallback>{testimonial.avatar}</AvatarFallback>
-                </Avatar>
-                <div className="flex-1">
-                  <h4 className="font-bold text-gray-900">{testimonial.name}</h4>
-                  <div className="flex items-center space-x-1">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                    ))}
+        {/* Testimonials Carousel */}
+        <div className="relative px-12">
+          <Slider {...sliderSettings}>
+            {googleReviews.map((testimonial) => (
+              <div key={testimonial.id} className="px-4">
+                <div className="bg-white border border-gray-200 rounded-2xl p-6 hover:shadow-xl transition-shadow duration-300 h-full">
+                  <div className="flex items-center space-x-4 mb-4">
+                    <Avatar className="w-12 h-12 bg-green-100 text-green-700">
+                      <AvatarFallback>{testimonial.avatar}</AvatarFallback>
+                    </Avatar>
+                    <div className="flex-1">
+                      <h4 className="font-bold text-gray-900">{testimonial.name}</h4>
+                      <div className="flex items-center space-x-1">
+                        {[...Array(testimonial.rating)].map((_, i) => (
+                          <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                        ))}
+                      </div>
+                    </div>
                   </div>
+                  <p className="text-gray-600 leading-relaxed mb-3">{testimonial.text}</p>
+                  <p className="text-sm text-gray-400">{testimonial.date}</p>
                 </div>
               </div>
-              <p className="text-gray-600 leading-relaxed mb-3">{testimonial.text}</p>
-              <p className="text-sm text-gray-400">{testimonial.date}</p>
-            </div>
-          ))}
+            ))}
+          </Slider>
         </div>
 
         {/* Google Maps Embed */}
-        <div className="bg-gray-50 rounded-2xl p-8 border border-gray-200">
+        <div className="mt-16 bg-gray-50 rounded-2xl p-8 border border-gray-200">
           <div className="flex items-center justify-center space-x-2 mb-6">
             <MapPin className="w-6 h-6 text-green-600" />
             <h3 className="text-2xl font-bold text-gray-900">Find Us on Google Maps</h3>

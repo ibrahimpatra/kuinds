@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Menu, X, Phone } from 'lucide-react';
 import { Button } from './ui/button';
 
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [logoClicks, setLogoClicks] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -14,17 +17,42 @@ export const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Reset click count after 2 seconds
+  useEffect(() => {
+    if (logoClicks > 0) {
+      const timer = setTimeout(() => setLogoClicks(0), 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [logoClicks]);
+
+  // Navigate to admin login on triple click
+  useEffect(() => {
+    if (logoClicks === 3) {
+      navigate('/admin/login');
+      setLogoClicks(0);
+    }
+  }, [logoClicks, navigate]);
+
   const navLinks = [
     { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
     { name: 'Services', href: '#services' },
     { name: 'Testimonials', href: '#testimonials' },
     { name: 'FAQ', href: '#faq' },
-    { name: 'Contact', href: '#contact' }
+    { name: 'Contact', href: '#contact' },
+    { name: 'Blog', href: '/blog', external: true }
   ];
 
   const scrollToSection = (e, href) => {
     e.preventDefault();
+    
+    // If it's an external link (blog), navigate using React Router
+    if (href.startsWith('/')) {
+      navigate(href);
+      setIsMobileMenuOpen(false);
+      return;
+    }
+    
     const element = document.querySelector(href);
     if (element) {
       const offset = 80;
@@ -38,6 +66,12 @@ export const Navbar = () => {
     }
   };
 
+  const handleLogoClick = (e) => {
+    e.preventDefault();
+    setLogoClicks(prev => prev + 1);
+    scrollToSection(e, '#home');
+  };
+
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       isScrolled ? 'bg-white shadow-lg' : 'bg-white/95 backdrop-blur-sm'
@@ -46,7 +80,12 @@ export const Navbar = () => {
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <a href="#home" className="flex items-center space-x-2" onClick={(e) => scrollToSection(e, '#home')}>
+            <a 
+              href="#home" 
+              className="flex items-center space-x-2" 
+              onClick={handleLogoClick}
+              title="Triple-click for admin access"
+            >
               <div className="flex items-center space-x-1">
                 <div className="w-3 h-3 rounded-full bg-red-600"></div>
                 <div className="w-3 h-3 rounded-full bg-yellow-400"></div>

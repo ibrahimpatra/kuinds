@@ -26,16 +26,22 @@ export const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    setTimeout(() => {
-      console.log('Form submitted:', formData);
-      toast({
-        title: "Message sent successfully!",
-        description: "We'll get back to you within 24 hours.",
-      });
-      setFormData({ name: '', email: '', phone: '', message: '' });
-      setIsSubmitting(false);
-    }, 1000);
+    // Format WhatsApp message
+    const message = `*New Inquiry from Website*%0A%0A*Name:* ${formData.name}%0A*Email:* ${formData.email}%0A*Phone:* ${formData.phone}%0A*Message:* ${formData.message}`;
+    
+    // Redirect to WhatsApp
+    const whatsappUrl = `https://wa.me/96555998579?text=${message}`;
+    window.open(whatsappUrl, '_blank');
+    
+    // Show success message
+    toast({
+      title: "Redirecting to WhatsApp",
+      description: "Your message will be sent via WhatsApp.",
+    });
+    
+    // Reset form
+    setFormData({ name: '', email: '', phone: '', message: '' });
+    setIsSubmitting(false);
   };
 
   const contactInfo = [
