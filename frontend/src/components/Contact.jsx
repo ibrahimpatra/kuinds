@@ -54,20 +54,12 @@ export const Contact = () => {
       bg: 'bg-green-50'
     },
     {
-      icon: Mail,
-      title: 'Email',
-      value: 'info@kuwaitindiads.com',
-      link: 'mailto:info@kuwaitindiads.com',
+      icon: MapPin,
+      title: 'Locations',
+      value: 'Salmiya & Farwaniya',
+      link: null,
       color: 'text-red-600',
       bg: 'bg-red-50'
-    },
-    {
-      icon: MapPin,
-      title: 'Location',
-      value: '3 Al Qatami St, Salmiya, Kuwait',
-      link: 'https://maps.google.com/?q=Kuwait+India+Driving+School',
-      color: 'text-yellow-600',
-      bg: 'bg-yellow-50'
     },
     {
       icon: Clock,

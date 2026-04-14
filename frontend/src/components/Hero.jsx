@@ -148,23 +148,23 @@ export const Hero = () => {
               <p className="text-lg text-gray-200 font-semibold mb-4">We teach in:</p>
               <div className="flex flex-wrap gap-3">
                 {[
-                  { name: 'Tamil', native: 'தமிழ்' },
                   { name: 'English', native: 'English' },
-                  { name: 'Malayalam', native: 'മലയാളം' },
+                  { name: 'Arabic', native: 'العربية' },
                   { name: 'Hindi', native: 'हिन्दी' },
-                  { name: 'Telugu', native: 'తెలుగు' },
-                  { name: 'Arabic', native: 'العربية' }
+                  { name: 'Tamil', native: 'தமிழ்' },
+                  { name: 'Malayalam', native: 'മലയാളം' },
+                  { name: 'Telugu', native: 'తెలుగు' }
                 ].map((lang) => (
                   <div 
                     key={lang.name} 
-                    className="bg-white/95 backdrop-blur-sm border-2 border-yellow-400 text-gray-900 px-5 py-2.5 rounded-full font-bold text-base shadow-lg hover:scale-105 hover:border-red-500 transition-all duration-200"
+                    className="bg-white/95 backdrop-blur-sm border-2 border-green-500 text-gray-900 px-5 py-2.5 rounded-full font-bold text-base shadow-lg hover:scale-105 hover:border-red-500 transition-all duration-200"
                   >
                     {lang.native}
                   </div>
                 ))}
               </div>
-              <p className="text-white font-bold text-xl mt-6 bg-green-600/80 backdrop-blur-sm px-6 py-3 rounded-lg inline-block border-2 border-yellow-400">
-                ✓ All Areas in Kuwait Covered
+              <p className="text-white font-bold text-xl mt-6 bg-green-600/90 backdrop-blur-sm px-6 py-3 rounded-lg inline-block border-2 border-red-500 shadow-xl">
+                ✓ All Over Kuwait
               </p>
             </div>
           </div>

@@ -5,11 +5,12 @@ import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import { Navbar } from "./components/Navbar";
 import { Hero } from "./components/Hero";
 import { About } from "./components/About";
-import { TrainerCard } from "./components/TrainerCard";
 import { Services } from "./components/Services";
 import { Testimonials } from "./components/Testimonials";
-import { FAQs } from "./components/FAQs";
 import { Contact } from "./components/Contact";
+import { TrainerInfo } from "./components/TrainerInfo";
+import { Locations } from "./components/Locations";
+import { FAQs } from "./components/FAQs";
 import { Footer } from "./components/Footer";
 import { WhatsAppFAB } from "./components/WhatsAppFAB";
 import { BlogList } from "./components/BlogList";
@@ -65,12 +66,15 @@ const HomePage = () => {
       <Navbar />
       <main>
         <Hero />
-        <TrainerCard />
         <About />
         <Services />
         <Testimonials />
-        <FAQs />
         <Contact />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
+          <TrainerInfo />
+          <Locations />
+        </div>
+        <FAQs />
       </main>
       <Footer />
       <WhatsAppFAB />
@@ -90,6 +94,7 @@ function App() {
             <Route path="/blog/:slug" element={<><Navbar /><BlogDetail /><Footer /></>} />
             
             {/* Admin Routes */}
+            <Route path="/login" element={<AdminLogin />} />
             <Route path="/admin/login" element={<AdminLogin />} />
             <Route 
               path="/admin/blog" 
