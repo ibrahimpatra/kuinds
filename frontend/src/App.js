@@ -5,6 +5,7 @@ import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import { Navbar } from "./components/Navbar";
 import { Hero } from "./components/Hero";
 import { About } from "./components/About";
+import { TrainerCard } from "./components/TrainerCard";
 import { Services } from "./components/Services";
 import { Testimonials } from "./components/Testimonials";
 import { FAQs } from "./components/FAQs";
@@ -64,6 +65,7 @@ const HomePage = () => {
       <Navbar />
       <main>
         <Hero />
+        <TrainerCard />
         <About />
         <Services />
         <Testimonials />

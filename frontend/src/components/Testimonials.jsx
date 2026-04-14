@@ -106,56 +106,101 @@ export const Testimonials = () => {
         </div>
 
         {/* Testimonials Carousel */}
-        <div className="relative px-2 md:px-12">
+        <div className="mb-12">
+          <style>{`
+            .slick-slide > div {
+              padding: 0 8px;
+            }
+            @media (max-width: 640px) {
+              .slick-slide > div {
+                padding: 0 4px;
+              }
+            }
+          `}</style>
           <Slider {...sliderSettings}>
             {googleReviews.map((testimonial) => (
-              <div key={testimonial.id} className="px-2 md:px-4">
-                <div className="bg-white border border-gray-200 rounded-2xl p-4 md:p-6 hover:shadow-xl transition-shadow duration-300 mx-2">
-                  <div className="flex items-center space-x-3 mb-4">
-                    <Avatar className="w-10 h-10 md:w-12 md:h-12 bg-green-100 text-green-700 flex-shrink-0">
-                      <AvatarFallback className="text-sm md:text-base">{testimonial.avatar}</AvatarFallback>
+              <div key={testimonial.id}>
+                <div className="bg-gradient-to-br from-white to-gray-50 border-2 border-yellow-400 rounded-2xl p-4 sm:p-6 hover:shadow-2xl hover:border-red-500 transition-all duration-300 mx-1 sm:mx-2 min-h-[280px] sm:min-h-[320px]">
+                  <div className="flex items-center space-x-3 mb-4 pb-4 border-b-2 border-yellow-200">
+                    <Avatar className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-green-400 to-green-600 text-white flex-shrink-0 border-2 border-yellow-400">
+                      <AvatarFallback className="text-base sm:text-lg font-bold">{testimonial.avatar}</AvatarFallback>
                     </Avatar>
                     <div className="flex-1 min-w-0">
-                      <h4 className="font-bold text-gray-900 text-sm md:text-base truncate">{testimonial.name}</h4>
-                      <div className="flex items-center space-x-1">
+                      <h4 className="font-bold text-gray-900 text-base sm:text-lg truncate">{testimonial.name}</h4>
+                      <div className="flex items-center space-x-1 mt-1">
                         {[...Array(testimonial.rating)].map((_, i) => (
-                          <Star key={i} className="w-3 h-3 md:w-4 md:h-4 fill-yellow-400 text-yellow-400" />
+                          <Star key={i} className="w-4 h-4 sm:w-5 sm:h-5 fill-yellow-400 text-yellow-400" />
                         ))}
                       </div>
                     </div>
                   </div>
-                  <p className="text-gray-600 leading-relaxed mb-3 text-sm md:text-base line-clamp-4 md:line-clamp-none">{testimonial.text}</p>
-                  <p className="text-xs md:text-sm text-gray-400">{testimonial.date}</p>
+                  <p className="text-gray-700 leading-relaxed mb-3 text-sm sm:text-base">{testimonial.text}</p>
+                  <p className="text-xs sm:text-sm text-gray-500 font-medium">{testimonial.date}</p>
                 </div>
               </div>
             ))}
           </Slider>
         </div>
 
-        {/* Google Maps Embed */}
-        <div className="mt-16 bg-gray-50 rounded-2xl p-8 border border-gray-200">
-          <div className="flex items-center justify-center space-x-2 mb-6">
-            <MapPin className="w-6 h-6 text-green-600" />
-            <h3 className="text-2xl font-bold text-gray-900">Find Us on Google Maps</h3>
+        {/* Google Maps - Both Locations */}
+        <div className="space-y-8">
+          {/* Location 1: Salmiya */}
+          <div className="bg-gray-50 rounded-2xl p-6 sm:p-8 border-4 border-yellow-400 shadow-xl">
+            <div className="flex items-center justify-center space-x-3 mb-6">
+              <MapPin className="w-7 h-7 text-red-600" />
+              <h3 className="text-2xl sm:text-3xl font-bold text-gray-900">Location 1: Salmiya</h3>
+            </div>
+            <div className="rounded-xl overflow-hidden shadow-2xl border-4 border-red-600">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7252.817265625!2d48.05531!3d29.3263828!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3fcf9b35913f647b%3A0x4aab8e6869ab55fe!2sKuwait%20India%20Driving%20School!5e0!3m2!1sen!2s!4v1234567890"
+                width="100%"
+                height="400"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Kuwait India Driving School - Salmiya Location"
+              ></iframe>
+            </div>
+            <div className="mt-6 bg-white p-4 rounded-lg border-2 border-yellow-400">
+              <p className="text-gray-700 font-semibold text-center">
+                <strong className="text-red-600">Address:</strong> 3 Al Qatami St. 24 Ln, Salmiya, Kuwait
+              </p>
+            </div>
           </div>
-          <div className="rounded-xl overflow-hidden shadow-lg">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7252.817265625!2d48.05531!3d29.3263828!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3fcf9b35913f647b%3A0x4aab8e6869ab55fe!2sKuwait%20India%20Driving%20School!5e0!3m2!1sen!2s!4v1234567890"
-              width="100%"
-              height="450"
-              style={{ border: 0 }}
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="Kuwait India Driving School Location"
-            ></iframe>
+
+          {/* Location 2: Farwaniya */}
+          <div className="bg-gray-50 rounded-2xl p-6 sm:p-8 border-4 border-yellow-400 shadow-xl">
+            <div className="flex items-center justify-center space-x-3 mb-6">
+              <MapPin className="w-7 h-7 text-green-600" />
+              <h3 className="text-2xl sm:text-3xl font-bold text-gray-900">Location 2: Farwaniya</h3>
+            </div>
+            <div className="rounded-xl overflow-hidden shadow-2xl border-4 border-red-600">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3476.169374486392!2d47.9535446!3d29.272821!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3fcf9bae848a5247%3A0x5e0c411f9ea61ac5!2sDriving%20school%20farwaniya!5e0!3m2!1sen!2s!4v1234567890"
+                width="100%"
+                height="400"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Driving School Farwaniya Location"
+              ></iframe>
+            </div>
+            <div className="mt-6 bg-white p-4 rounded-lg border-2 border-yellow-400">
+              <p className="text-gray-700 font-semibold text-center">
+                <strong className="text-green-600">Address:</strong> Farwaniya, Kuwait
+              </p>
+            </div>
           </div>
-          <div className="mt-6 text-center">
-            <p className="text-gray-600 mb-2">
-              <strong>Address:</strong> 3 Al Qatami St. 24 Ln, Salmiya, Kuwait
+
+          {/* Coverage Note */}
+          <div className="bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-400 p-6 rounded-2xl border-4 border-red-600 text-center shadow-xl">
+            <p className="text-gray-900 font-black text-xl sm:text-2xl">
+              🚗 Serving All Areas Across Kuwait 🚗
             </p>
-            <p className="text-gray-600">
-              <strong>Also serving:</strong> Mahboula, Block 2, Street 215 and surrounding areas
+            <p className="text-gray-800 font-bold mt-2">
+              Pickup & Drop Service Available Everywhere
             </p>
           </div>
         </div>

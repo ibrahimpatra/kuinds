@@ -18,24 +18,24 @@ export const Hero = () => {
 
   const carouselImages = [
     {
-      url: 'https://images.unsplash.com/photo-1570696657911-287e234bb781',
-      alt: 'Professional driving instruction'
+      url: 'https://customer-assets.emergentagent.com/job_learn-drive-kuwait/artifacts/os4f0zd1_Gemini_Generated_Image_s0cgogs0cgogs0cg.png',
+      alt: 'Student learning to drive in Kuwait with instructor'
+    },
+    {
+      url: 'https://customer-assets.emergentagent.com/job_learn-drive-kuwait/artifacts/x6kb1ea1_Gemini_Generated_Image_txwhvrtxwhvrtxwh.png',
+      alt: 'Professional driving instruction on Kuwait roads'
+    },
+    {
+      url: 'https://customer-assets.emergentagent.com/job_learn-drive-kuwait/artifacts/mdlze98g_Gemini_Generated_Image_dpdividpdividpdi.png',
+      alt: 'Kuwait driving academy training'
     },
     {
       url: 'https://images.unsplash.com/photo-1667020854803-0305af085242',
       alt: 'Expert instructors teaching'
     },
     {
-      url: 'https://images.unsplash.com/photo-1630406144797-821be1f35d75',
-      alt: 'Modern teaching methods'
-    },
-    {
       url: 'https://images.pexels.com/photos/9518244/pexels-photo-9518244.jpeg',
       alt: 'Student learning to drive'
-    },
-    {
-      url: 'https://images.pexels.com/photos/9518017/pexels-photo-9518017.jpeg',
-      alt: 'Professional instruction in Kuwait'
     }
   ];
 
@@ -146,22 +146,26 @@ export const Hero = () => {
             {/* Languages */}
             <div className="mt-8">
               <p className="text-lg text-gray-200 font-semibold mb-4">We teach in:</p>
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-wrap gap-3">
                 {[
+                  { name: 'Tamil', native: 'தமிழ்' },
                   { name: 'English', native: 'English' },
-                  { name: 'Arabic', native: 'العربية' },
-                  { name: 'Hindi', native: 'हिन्दी' },
                   { name: 'Malayalam', native: 'മലയാളം' },
-                  { name: 'Tamil', native: 'தமிழ்' }
+                  { name: 'Hindi', native: 'हिन्दी' },
+                  { name: 'Telugu', native: 'తెలుగు' },
+                  { name: 'Arabic', native: 'العربية' }
                 ].map((lang) => (
                   <div 
                     key={lang.name} 
-                    className="bg-white/90 backdrop-blur-sm border-2 border-white text-gray-900 px-6 py-3 rounded-full font-bold text-lg shadow-lg hover:scale-105 transition-transform duration-200"
+                    className="bg-white/95 backdrop-blur-sm border-2 border-yellow-400 text-gray-900 px-5 py-2.5 rounded-full font-bold text-base shadow-lg hover:scale-105 hover:border-red-500 transition-all duration-200"
                   >
                     {lang.native}
                   </div>
                 ))}
               </div>
+              <p className="text-white font-bold text-xl mt-6 bg-green-600/80 backdrop-blur-sm px-6 py-3 rounded-lg inline-block border-2 border-yellow-400">
+                ✓ All Areas in Kuwait Covered
+              </p>
             </div>
           </div>
         </div>
