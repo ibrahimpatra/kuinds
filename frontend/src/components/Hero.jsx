@@ -144,13 +144,24 @@ export const Hero = () => {
             </div>
 
             {/* Languages */}
-            <div className="flex flex-wrap gap-2 pt-4">
-              <span className="text-sm text-gray-200 font-semibold">We teach in:</span>
-              {['English', 'Arabic', 'Hindi', 'Malayalam', 'Tamil'].map((lang) => (
-                <span key={lang} className="bg-white/20 backdrop-blur-sm border border-white/30 text-white px-3 py-1 rounded-full text-sm font-medium">
-                  {lang}
-                </span>
-              ))}
+            <div className="mt-8">
+              <p className="text-lg text-gray-200 font-semibold mb-4">We teach in:</p>
+              <div className="flex flex-wrap gap-4">
+                {[
+                  { name: 'English', native: 'English' },
+                  { name: 'Arabic', native: 'العربية' },
+                  { name: 'Hindi', native: 'हिन्दी' },
+                  { name: 'Malayalam', native: 'മലയാളം' },
+                  { name: 'Tamil', native: 'தமிழ்' }
+                ].map((lang) => (
+                  <div 
+                    key={lang.name} 
+                    className="bg-white/90 backdrop-blur-sm border-2 border-white text-gray-900 px-6 py-3 rounded-full font-bold text-lg shadow-lg hover:scale-105 transition-transform duration-200"
+                  >
+                    {lang.native}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>

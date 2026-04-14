@@ -42,12 +42,18 @@ export const Testimonials = () => {
         breakpoint: 1024,
         settings: {
           slidesToShow: 2,
+          arrows: false,
+          dots: true
         }
       },
       {
         breakpoint: 640,
         settings: {
           slidesToShow: 1,
+          arrows: false,
+          dots: true,
+          centerMode: true,
+          centerPadding: '20px'
         }
       }
     ]
@@ -100,26 +106,26 @@ export const Testimonials = () => {
         </div>
 
         {/* Testimonials Carousel */}
-        <div className="relative px-12">
+        <div className="relative px-2 md:px-12">
           <Slider {...sliderSettings}>
             {googleReviews.map((testimonial) => (
-              <div key={testimonial.id} className="px-4">
-                <div className="bg-white border border-gray-200 rounded-2xl p-6 hover:shadow-xl transition-shadow duration-300 h-full">
-                  <div className="flex items-center space-x-4 mb-4">
-                    <Avatar className="w-12 h-12 bg-green-100 text-green-700">
-                      <AvatarFallback>{testimonial.avatar}</AvatarFallback>
+              <div key={testimonial.id} className="px-2 md:px-4">
+                <div className="bg-white border border-gray-200 rounded-2xl p-4 md:p-6 hover:shadow-xl transition-shadow duration-300 mx-2">
+                  <div className="flex items-center space-x-3 mb-4">
+                    <Avatar className="w-10 h-10 md:w-12 md:h-12 bg-green-100 text-green-700 flex-shrink-0">
+                      <AvatarFallback className="text-sm md:text-base">{testimonial.avatar}</AvatarFallback>
                     </Avatar>
-                    <div className="flex-1">
-                      <h4 className="font-bold text-gray-900">{testimonial.name}</h4>
+                    <div className="flex-1 min-w-0">
+                      <h4 className="font-bold text-gray-900 text-sm md:text-base truncate">{testimonial.name}</h4>
                       <div className="flex items-center space-x-1">
                         {[...Array(testimonial.rating)].map((_, i) => (
-                          <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                          <Star key={i} className="w-3 h-3 md:w-4 md:h-4 fill-yellow-400 text-yellow-400" />
                         ))}
                       </div>
                     </div>
                   </div>
-                  <p className="text-gray-600 leading-relaxed mb-3">{testimonial.text}</p>
-                  <p className="text-sm text-gray-400">{testimonial.date}</p>
+                  <p className="text-gray-600 leading-relaxed mb-3 text-sm md:text-base line-clamp-4 md:line-clamp-none">{testimonial.text}</p>
+                  <p className="text-xs md:text-sm text-gray-400">{testimonial.date}</p>
                 </div>
               </div>
             ))}
