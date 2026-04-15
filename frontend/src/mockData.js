@@ -65,7 +65,7 @@ export const faqs = [
   {
     id: 3,
     question: "What languages do your instructors teach in?",
-    answer: "Our experienced instructors teach in multiple languages including English, Arabic, Hindi, Malayalam, and Tamil. This makes it easier for expats to understand and learn effectively."
+    answer: "Our experienced instructors teach in multiple languages including English, Arabic, Hindi, Malayalam, Telugu and Tamil. This makes it easier for expats to understand and learn effectively."
   },
   {
     id: 4,
@@ -116,7 +116,7 @@ export const services = [
   {
     id: 4,
     title: "Multilingual Training",
-    description: "Learn in your preferred language - English, Arabic, Hindi, Malayalam, or Tamil.",
+    description: "Learn in your preferred language - English, Arabic, Hindi, Malayalam, Telugu or Tamil.",
     icon: "Languages"
   },
   {

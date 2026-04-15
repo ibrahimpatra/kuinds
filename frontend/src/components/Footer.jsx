@@ -44,7 +44,7 @@ export const Footer = () => {
                 <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
                 <div className="w-3 h-3 rounded-full bg-green-600"></div>
               </div>
-              <h3 className="text-white font-bold text-lg">Kuwait India DS</h3>
+              <h3 className="text-white font-bold text-lg">Kuwait India Driving School</h3>
             </div>
             <p className="text-sm leading-relaxed">
               Kuwait's premier Indian driving school offering professional driving lessons in multiple languages. Get your license with confidence!

@@ -1,7 +1,7 @@
 # Kuwait India Driving School - Landing Page
 
 ## Original Problem Statement
-Create a landing page website with light colored theme, static single-page design with navbar navigation that scrolls to sections. Embed Google Map reviews nicely as testimonials. Include nice images related to driving and Kuwait. Make it SEO friendly to rank first on Google search for keywords like "driving school kuwait", "indian driving school kuwait", "driving school mahboula", etc.
+Create a landing page website with light colored theme, static single-page design with navbar navigation that scrolls to sections. Embed Google Map reviews nicely as testimonials. Include nice images related to driving and Kuwait. Make it SEO friendly to rank first on Google search for keywords like "driving school kuwait", "indian driving school kuwait", "driving school arabic", etc.
 
 **Color Theme:** Professional traffic signal colors (red, green, yellow)
 **Images:** High-quality AI-selected driving and Kuwait-themed images
@@ -165,7 +165,7 @@ Create a landing page website with light colored theme, static single-page desig
 - learn to drive kuwait
 - driving instructor kuwait
 - kuwait driving test
-- driving school mahboula
+- driving school Kuwait
 - driving school salmiya
 - hindi driving instructor kuwait
 - malayalam driving instructor kuwait
@@ -177,7 +177,6 @@ Create a landing page website with light colored theme, static single-page desig
 - **Phone:** +965 55998579
 - **Email:** info@kuwaitindiads.com
 - **Address:** 3 Al Qatami St. 24 Ln, Salmiya, Kuwait
-- **Also Serving:** Mahboula, Block 2, Street 215
 - **WhatsApp:** https://wa.me/96555998579
 
 ---

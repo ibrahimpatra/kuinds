@@ -56,11 +56,11 @@ const HomePage = () => {
       
       const metaDescription = document.querySelector('meta[name="description"]');
       if (metaDescription) {
-        metaDescription.setAttribute('content', 'Kuwait India Driving School offers professional driving lessons in Kuwait. Expert instructors teaching in English, Hindi, Malayalam, Tamil & Arabic. Pass your driving test on first try! Call +965 55998579');
+        metaDescription.setAttribute('content', 'Kuwait India Driving School offers professional driving lessons in Kuwait. Expert instructors teaching in English, Arabic, Hindi, Telugu & Tamil . Pass your driving test on first try! Call +965 55998579');
       } else {
         const meta = document.createElement('meta');
         meta.name = 'description';
-        meta.content = 'Kuwait India Driving School offers professional driving lessons in Kuwait. Expert instructors teaching in English, Hindi, Malayalam, Tamil & Arabic. Pass your driving test on first try! Call +965 55998579';
+        meta.content = 'Kuwait India Driving School offers professional driving lessons in Kuwait. Expert instructors teaching in English, Arabic, Hindi, Telugu & Tamil. Pass your driving test on first try! Call +965 55998579';
         document.head.appendChild(meta);
       }
 
@@ -69,7 +69,7 @@ const HomePage = () => {
       if (!metaKeywords) {
         const meta = document.createElement('meta');
         meta.name = 'keywords';
-        meta.content = 'driving school kuwait, indian driving school kuwait, kuwait driving lessons, learn to drive kuwait, driving instructor kuwait, kuwait driving test, driving school mahboula, driving school salmiya, hindi driving instructor kuwait, malayalam driving instructor, tamil driving instructor';
+        meta.content = 'driving school kuwait, indian driving school kuwait, kuwait driving lessons, learn to drive kuwait, driving instructor kuwait, kuwait driving test, driving school Kuwait, driving school salmiya, hindi driving instructor kuwait, malayalam driving instructor, tamil driving instructor';
         document.head.appendChild(meta);
       }
     }
